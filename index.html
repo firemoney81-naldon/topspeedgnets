@@ -1,23 +1,571 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "KT 인터넷 가입 서비스",
+      "serviceType": "인터넷 및 통신 서비스 가입 대행",
+      "description": "2026년 KT 인터넷 신규 가입 고객을 위한 맞춤형 요금제 추천 및 현금지원, 사은품 비교 분석 서비스.",
+      "provider": {
+        "@type": "Organization",
+        "name": "KT 인터넷 가입 전문가이드",
+        "url": "https://yourdomain.com",
+        "sameAs": [
+          "https://www.facebook.com/ktexpert",
+          "https://twitter.com/ktexpert"
+        ]
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "대한민국"
+      },
+      "image": "https://yourdomain.com/images/kt-internet-main.jpg",
+      "url": "https://yourdomain.com/kt-internet-guide",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1250"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "KT 인터넷 요금제 카탈로그",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "KT 슬림 인터넷 (100Mbps)"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "22000",
+              "priceCurrency": "KRW",
+              "unitText": "월",
+              "description": "기본형 인터넷 상품으로 1~2인 가구에 적합"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "KT 기가 슬림 인터넷 (500Mbps)"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "33000",
+              "priceCurrency": "KRW",
+              "unitText": "월",
+              "description": "가장 많이 선택하는 인기 상품, 넉넉한 속도로 OTT 시청과 게임에 유리"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "KT 기가 인터넷 (1Gbps)"
+            },
+            "priceSpecification": {
+              "@type": "UnitPriceSpecification",
+              "price": "38500",
+              "priceCurrency": "KRW",
+              "unitText": "월",
+              "description": "고화질 스트리밍, 대용량 파일 다운로드 등 전문적인 작업에 적합"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+    <style>
+      /* --- Reset and Typography --- */
+      body {
+        font-family: "Noto Sans KR", sans-serif;
+        margin: 0;
+        padding: 0;
+        line-height: 1.8;
+        background-color: #f7f9fc;
+        color: #333;
+      }
+      a {
+        text-decoration: none;
+        color: #007bff;
+        transition: color 0.3s ease;
+      }
+      a:hover {
+        color: #0056b3;
+      }
+      h1, h2, h3 {
+        color: #1a2a44;
+        font-weight: 700;
+      }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 2rem; border-bottom: 2px solid #e0eaff; padding-bottom: 0.5rem; margin-top: 2.5rem; }
+      h3 { font-size: 1.5rem; color: #007bff; margin-top: 1.5rem; }
+
+      /* --- Layout --- */
+      header {
+        background-color: #ffffff;
+        border-bottom: 5px solid #0056b3;
+        padding: 1.5rem 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      }
+      header .container {
+        max-width: 1200px;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1rem;
+      }
+      nav ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+      nav a {
+        color: #333;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: color 0.3s ease, background-color 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+      }
+      nav a:hover {
+        color: white;
+        background-color: #007bff;
+      }
+      main {
+        max-width: 1000px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: white;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        border-radius: 10px;
+      }
+
+      /* --- Section Styling --- */
+      section {
+        margin-bottom: 3rem;
+      }
+      .visual-content {
+        background: url('https://images.pexels.com/photos/3861961/pexels-photo-3861961.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center/cover;
+        height: 300px;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        color: white;
+      }
+      .visual-content h2 {
+        font-size: 3rem;
+        color: white;
+        border-bottom: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* --- Tables and Lists --- */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        font-size: 0.95rem;
+      }
+      th, td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+      th {
+        background-color: #e0f0ff;
+        font-weight: 600;
+        color: #1a2a44;
+        border-top: 2px solid #007bff;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      ul.benefit-list {
+        list-style: none;
+        padding-left: 0;
+      }
+      ul.benefit-list li {
+        padding: 0.7rem 0;
+        border-bottom: 1px dashed #eee;
+        line-height: 1.6;
+      }
+      ul.benefit-list li:last-child {
+        border-bottom: none;
+      }
+
+      /* --- FAQ Accordion --- */
+      .faq-item {
+        margin-bottom: 1rem;
+        border: 1px solid #e0eaff;
+        border-radius: 8px;
+        background-color: #ffffff;
+      }
+      .faq-question {
+        padding: 1rem 1.5rem;
+        cursor: pointer;
+        font-weight: 600;
+        color: #1a2a44;
+        position: relative;
+        display: block;
+        transition: background-color 0.3s ease;
+      }
+      .faq-question:hover {
+        background-color: #f5f8ff;
+      }
+      .faq-answer {
+        padding: 0 1.5rem 1rem;
+        font-size: 0.95rem;
+        background-color: #fcfcfc;
+        border-top: 1px solid #e0eaff;
+        display: none; /* Initial state */
+        overflow: hidden;
+      }
+      .faq-question.active + .faq-answer {
+        display: block;
+      }
+      .faq-question:before {
+        content: '+';
+        position: absolute;
+        right: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+      .faq-question.active:before {
+        content: '-';
+      }
+
+      /* --- Call to Action and Form --- */
+      .cta-section {
+        background-color: #007bff;
+        color: white;
+        padding: 2.5rem;
+        border-radius: 10px;
+        text-align: center;
+        margin: 2rem 0;
+      }
+      .cta-button {
+        display: inline-block;
+        background-color: #ff6600;
+        color: white;
+        font-weight: 700;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+      }
+      .cta-button:hover {
+        background-color: #e65c00;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .form-group input, .form-group select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      .form-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      }
+
+      /* --- Keyword Tags --- */
+      .keyword-tags {
+        margin: 1.5rem 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 1rem;
+        background-color: #f0f8ff;
+        border-radius: 8px;
+      }
+      .keyword-tags span {
+        background-color: #e0f0ff;
+        color: #007bff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 1rem;
+      }
+      .location-grid span {
+        background-color: #f1f1f1;
+        padding: 8px 12px;
+        border-radius: 4px;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      /* --- Footer --- */
+      footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 0.9rem;
+        color: #777;
+        background-color: #f0f0f0;
+        margin-top: 3rem;
+        border-top: 1px solid #e0e0e0;
+      }
+      footer .footer-links a {
+        color: #777;
+        margin: 0 0.5rem;
+      }
+      footer .footer-links a:hover {
+        color: #333;
+      }
+      /* --- Responsive adjustments --- */
+      @media (max-width: 768px) {
+        nav ul { flex-direction: column; gap: 0.5rem; }
+        nav a { padding: 0.5rem; text-align: center; }
+        .visual-content h2 { font-size: 2rem; }
+        main { padding: 1rem; margin: 1rem auto; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.8rem; }
+        .location-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>KT 인터넷 가입 센터</h1>
+            <nav>
+                <ul>
+                    <li><a href="#intro">서비스 소개</a></li>
+                    <li><a href="#plan">요금제 비교</a></li>
+                    <li><a href="#benefit">현금/사은품 혜택</a></li>
+                    <li><a href="#faq">자주 묻는 질문</a></li>
+                    <li><a href="#contact">상담 신청</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <!-- Section 1: Introduction -->
+        <section id="intro">
+            <div class="visual-content">
+                <h2>KT 인터넷, 2026년 최신 가이드</h2>
+            </div>
+            <h2>KT 인터넷 가입, 왜 지금 선택해야 할까요?</h2>
+            <p>2026년, 인터넷 환경은 단순히 속도를 넘어 안정성과 확장성이 중요해지고 있습니다. 특히 4차 산업혁명 시대의 핵심 인프라로서, 고화질 스트리밍, 클라우드 컴퓨팅, IoT 기기 연결 등 대용량 데이터 전송이 일상화되었습니다. 국내 통신 시장에서 <a href="https://www.kt.com" target="_blank">KT</a>는 오랜 기간 안정적인 인프라를 구축해 왔으며, 특히 전국 방방곡곡에 광케이블 망을 보유하고 있어 '인터넷 품질'과 '안정성'에서 높은 평가를 받고 있습니다. <a href="https://www.nso.go.kr/index.do" target="_blank">과학기술정보통신부</a>의 통신서비스 품질평가에서도 꾸준히 우수한 성적을 기록하며 사용자들에게 신뢰를 주고 있습니다. KT 인터넷 가입을 고려하는 분들이라면, 2026년 최신 요금제와 혜택을 꼼꼼히 비교하여 '내돈내산' 후기가 좋은 상품을 선택하는 것이 중요합니다.</p>
+
+            <h3>KT 인터넷의 차별화된 장점</h3>
+            <ul class="benefit-list">
+                <li><strong>뛰어난 안정성:</strong> KT는 유무선 통신망에서 업계 최고 수준의 안정성을 자랑합니다. 특히 <a href="https://namu.wiki/w/KT" target="_blank">나무위키</a> 등에서도 언급되듯이, 과거 통신 재난 상황에서도 비교적 빠른 복구를 보여주며 신뢰도를 높였습니다. 이는 잦은 끊김 현상 없이 쾌적한 인터넷 환경을 원하는 사용자들에게 큰 장점입니다.</li>
+                <li><strong>광범위한 커버리지:</strong> KT는 대한민국 전 지역에 가장 광범위한 광케이블 망을 구축하고 있습니다. 서울, 부산, 대구, 인천, 광주, 대전 등의 대도시뿐만 아니라 강원도, 충청도, 전라도, 경상도 등 지방 소도시 및 농어촌 지역까지 커버리지가 우수하여 어떤 환경에서도 안정적인 서비스를 기대할 수 있습니다.</li>
+                <li><strong>다양한 결합 상품:</strong> 휴대폰, IPTV, 인터넷 전화 등 다양한 상품을 결합하여 가입하면 월 요금을 할인받을 수 있습니다. 특히 KT 모바일 사용자라면 '프리미엄 가족 결합' 등을 통해 최대 50%까지 할인받을 수 있는 혜택이 있어 '저렴한곳'을 찾는 소비자에게 실질적인 비용 절감을 제공합니다.</li>
+            </ul>
+
+            <div class="keyword-tags">
+                <span>KT 인터넷 가입</span><span>KT 기가 인터넷</span><span>KT 장점</span><span>KT 단점</span><span>KT 가격</span><span>KT 요금제</span><span>KT 신규 가입 혜택</span><span>KT 싼곳</span><span>KT 전문가이드</span><span>내돈내산 후기</span><span>KT 인터넷 속도</span><span>KT 와이파이</span><span>KT TV 결합</span>
+            </div>
+        </section>
+
+        <!-- Section 2: Plan Comparison -->
+        <section id="plan">
+            <h2>2026년 KT 인터넷 요금제 비교 분석</h2>
+            <p>KT는 고객의 사용 패턴에 따라 다양한 속도와 옵션을 제공합니다. 2026년 기준으로 가장 많이 선택하는 100M, 500M, 1Gbps 상품을 중심으로 요금제와 '평균' 가격을 비교해 보겠습니다. '얼마'나 절약할 수 있는지 따져보려면, 단순히 월 요금뿐 아니라 '현금지원'이나 '사은품' 혜택, 그리고 'TV 결합' 할인을 종합적으로 고려해야 합니다.</p>
+
+            <h3>주요 KT 인터넷 요금제 및 예상 비용 (3년 약정 기준)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>요금제</th>
+                        <th>속도 (다운로드/업로드)</th>
+                        <th>월 예상 금액 (인터넷만)</th>
+                        <th>추천 사용 환경</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>슬림 (100Mbps)</strong></td>
+                        <td>최대 100Mbps</td>
+                        <td>22,000원~27,500원</td>
+                        <td>1인 가구, 간단한 웹서핑 및 OTT 시청</td>
+                    </tr>
+                    <tr>
+                        <td><strong>기가 슬림 (500Mbps)</strong></td>
+                        <td>최대 500Mbps</td>
+                        <td>33,000원~38,500원</td>
+                        <td>2~3인 가구, 고화질 스트리밍, 온라인 게임, 재택근무</td>
+                    </tr>
+                    <tr>
+                        <td><strong>기가 인터넷 (1Gbps)</strong></td>
+                        <td>최대 1Gbps</td>
+                        <td>38,500원~44,000원</td>
+                        <td>4인 이상 가구, 대용량 파일 전송, 4K/8K 스트리밍, 방송/디자인 전문가</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10Giga 인터넷 (10Gbps)</strong></td>
+                        <td>최대 10Gbps</td>
+                        <td>66,000원~110,000원</td>
+                        <td>초고속 전문 환경, 서버 운영, 대규모 데이터 처리</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.85rem; color: #666;">* 상기 요금은 부가세 포함 금액이며, 약정 기간 및 결합 상품 여부에 따라 달라질 수 있습니다. 정확한 '견적'은 상담을 통해 확인하세요.</p>
+
+            <h3>KT vs. 타사 비교: 장단점 차이점 분석</h3>
+            <p>KT, SKT, LG U+는 모두 훌륭한 '전문 업체'이지만, '차이점'이 분명합니다. KT는 '안정적인 인프라'를 강점으로 내세우며, 특히 '기가 인터넷' 분야에서 가장 높은 점유율을 가지고 있습니다. 반면 SKT는 모바일 결합 시 할인 폭이 큰 편이며, LG U+는 TV 서비스의 콘텐츠 다양성으로 경쟁력을 확보하고 있습니다. 따라서 '싼곳'을 찾기보다 '나에게 맞는' 상품을 선택하는 것이 중요합니다. 특히 '내돈내산' 후기를 살펴보면, 게임이나 재택근무 등 끊김 없는 환경이 중요한 사용자들은 KT를 선호하는 경향이 있습니다.</p>
+
+            <h4>KT 기가 인터넷의 장점과 단점</h4>
+            <ul class="benefit-list">
+                <li><strong>장점:</strong> 높은 안정성과 전국 커버리지, 모바일 결합 시 강력한 할인 혜택, <a href="https://www.kisa.or.kr/" target="_blank">한국인터넷진흥원</a>에서 인정한 통신 품질.</li>
+                <li><strong>단점:</strong> 다른 통신사 대비 기본 요금이 상대적으로 높게 책정될 수 있음 (단, 결합 시 상쇄 가능), IPTV 상품의 콘텐츠 다양성이 타사에 비해 부족하다는 평가가 있음.</li>
+            </ul>
+        </section>
+
+        <!-- Section 3: Benefits and Promotions -->
+        <section id="benefit">
+            <h2>현금지원 및 사은품 혜택 분석 (2026년 기준)</h2>
+            <p>인터넷 가입 시 '현금지원'이나 '사은품' 혜택은 소비자에게 가장 큰 관심사 중 하나입니다. 2026년에도 '신규 가입' 고객에게는 다양한 '지원금'이 제공되고 있습니다. 하지만 '평균' 금액과 '최대' 금액 사이에는 차이가 있으며, 가입 채널에 따라 혜택이 크게 달라집니다. '저렴한곳'을 찾기 위해 발품을 팔기보다, '전문 업체'를 통해 정확한 정보를 얻는 것이 중요합니다. 최근에는 '인터넷 가입 순위' 사이트나 <a href="https://www.kcc.go.kr" target="_blank">방송통신위원회</a> 가이드라인을 참고하여 불법적인 과대광고에 속지 않도록 주의해야 합니다.</p>
+
+            <h3>사은품과 현금지원, 어떤 것을 선택할까?</h3>
+            <p>사은품은 보통 상품권(백화점 상품권, 마트 상품권 등)이나 가전제품(TV, 공기청정기, 태블릿PC 등)으로 제공됩니다. '현금지원'은 즉시 현금으로 받을 수 있는 혜택으로, '상품권' 대신 현금을 선호하는 고객이 많습니다. '디시' 같은 커뮤니티나 '네이버' 검색을 통해 '후기'를 찾아보면, '사은품'보다 현금지원을 선택하는 것이 더 실질적인 '혜택'이라고 조언하는 경우가 많습니다.</p>
+
+            <h3>2026년 현금지원 금액 예상 가이드</h3>
+            <p>현금지원 금액은 통신사 정책과 가입 상품(인터넷 단독, TV 결합, 폰 결합 등)에 따라 유동적입니다. '평균' 현금지원 '금액'은 가입 유형별로 다르며, '예상' 견적은 다음과 같습니다. 통상적으로 '기가 인터넷' + 'TV' 결합 상품이 가장 많은 '지원금'을 받을 수 있습니다. 최근에는 AI 기술(ChatGPT, Gemini 등)을 활용하여 요금제별 예상 현금지원 금액을 시뮬레이션해 주는 서비스도 등장했습니다.</p>
+            <ul>
+                <li><strong>인터넷 단독 가입:</strong> '평균' 10만원 ~ 15만원대</li>
+                <li><strong>인터넷 + TV 결합 가입:</strong> '평균' 30만원 ~ 40만원대 (최대 50만원 이상도 가능)</li>
+                <li><strong>인터넷 + TV + 휴대폰 결합 가입:</strong> 혜택이 가장 크며, '현금지원' 외에도 '월 요금 할인'이 더해져 총 '비용' 절감 효과가 높습니다.</li>
+            </ul>
+        </section>
+
+        <!-- Section 4: Installation and Regional Coverage -->
+        <section id="regional">
+            <h2>전국 지역별 KT 인터넷 가입 안내 및 주의사항</h2>
+            <p>KT의 광범위한 인프라는 '서울'이나 '경기' 지역과 같은 수도권뿐만 아니라 '부산', '대구', '인천', '광주', '대전', '울산', '세종'과 같은 광역시, 그리고 '충청남도', '충청북도', '전라남도', '전라북도', '경상북도', '경상남도', '강원도', '제주도'에 이르기까지 전국적으로 균일한 서비스를 제공합니다. 그러나 설치 환경에 따라 '장점'과 '단점'이 다를 수 있습니다. 특히 2026년에는 '기가 인터넷' 설치 가능 지역이 확대되었지만, 아직 일부 구도심이나 신규 아파트가 아닌 주택가, 혹은 도서산간 지역은 설치에 제약이 있을 수 있습니다. 따라서 '신규 가입' 전에는 반드시 주소지를 기반으로 '설치 가능 여부'를 확인해야 합니다.</p>
+
+            <h3>주요 지역별 설치 환경 고려사항</h3>
+            <div class="location-grid">
+                <span>서울 강남구</span><span>서울 강북구</span><span>부산 해운대구</span><span>부산 동래구</span><span>대구 수성구</span><span>대구 달서구</span><span>인천 연수구</span><span>인천 부평구</span><span>광주 서구</span><span>광주 북구</span>
+                <span>대전 유성구</span><span>대전 서구</span><span>울산 남구</span><span>울산 북구</span><span>세종시</span><span>수원시</span><span>용인시</span><span>성남시</span><span>고양시</span><span>화성시</span>
+                <span>청주시</span><span>천안시</span><span>전주시</span><span>포항시</span><span>창원시</span><span>제주시</span><span>서귀포시</span><span>강릉시</span><span>원주시</span><span>춘천시</span>
+                <span>구미시</span><span>김해시</span><span>양산시</span><span>파주시</span><span>평택시</span><span>김천시</span><span>나주시</span><span>순천시</span><span>여수시</span><span>목포시</span>
+            </div>
+
+            <p>위의 지역 키워드들을 통해 알 수 있듯이, KT는 전국적으로 넓은 커버리지를 가지고 있지만, 주택 유형(아파트, 빌라, 단독주택)에 따라 광케이블 인입 방식이 다를 수 있습니다. 신규 아파트의 경우 '기가 인터넷' 설치가 용이하지만, 노후된 빌라나 주택은 내부 배선 문제로 속도 제한이 있을 수 있습니다. '전문 업체'와 상담 시, 정확한 주소를 알려주고 '예상' 속도를 미리 확인하는 것이 좋습니다.</p>
+
+            <p><strong>네이버, 구글 검색 트렌드 분석:</strong> 최근 '네이버'와 '구글' 검색 엔진에서 'KT 인터넷 가입 후기', 'KT 현금지원 금액', 'KT 인터넷 장단점' 등 다양한 키워드가 높은 검색량을 보이고 있습니다. 이는 소비자들이 단순히 '싼곳'을 찾기보다, '전문적인 분석'을 통해 자신에게 맞는 '상품'과 '혜택'을 비교하고자 하는 니즈가 크다는 것을 의미합니다. 또한 '유튜브'나 '블로그'를 통해 '내돈내산' 후기를 참고하여 '가입'을 결정하는 경향이 짙어졌습니다.</p>
+        </section>
+
+        <!-- Section 5: FAQ and Additional Info -->
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-q-1">Q1. KT 인터넷 신규 가입 시 '현금지원'은 언제 받을 수 있나요?</button>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>A. '신규 가입' 후 설치가 완료되면 보통 1~2주 이내에 '현금지원'이 이루어집니다. 일부 '전문 업체'는 당일 지급을 약속하는 곳도 있지만, 통신사 정책상 개통 확인 후 지급되는 것이 일반적입니다. '사은품' 지급 시기는 가입 채널에 따라 다르므로 반드시 가입 전 확인해야 합니다. '예상' 지급일은 상담 시 안내받으실 수 있습니다.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-q-2">Q2. KT 인터넷 가입 시 '와이파이 공유기'는 무료로 제공되나요?</button>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>A. KT 인터넷 가입 시 제공되는 '와이파이 공유기'는 요금제에 따라 다릅니다. '기가 인터넷' 상품의 경우 고성능 와이파이 공유기를 무상 임대(월 요금에 포함되거나 할인 적용)해주는 경우가 많습니다. '슬림 인터넷' 상품은 별도 요금이 부과될 수 있습니다. 2026년에는 'Wi-Fi 6' 기술이 적용된 공유기가 보편화되어, 기존보다 훨씬 빠르고 안정적인 무선 환경을 구축할 수 있습니다. <a href="https://www.kto.or.kr/" target="_blank">한국관광공사</a>나 <a href="https://www.police.go.kr/" target="_blank">경찰청</a> 등 공공기관에서도 공공 와이파이 서비스에 KT의 기술력을 활용하고 있습니다.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-q-3">Q3. 'KT 인터넷 장단점'은 무엇인가요? 타사 '비교' 시 강점은?</button>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>A. KT의 최대 '장점'은 '안정성'입니다. 특히 국내 최대 규모의 광케이블 망을 기반으로 하여, 다른 통신사에 비해 '인터넷 속도'가 들쑥날쑥하지 않고 꾸준합니다. '단점'으로는 일부 사용자들이 '요금'이 상대적으로 높다고 느끼는 경우가 있으나, '모바일 결합'을 통해 충분히 '할인'을 받을 수 있습니다. '차이점'을 정리하면, SKT는 휴대폰 결합 할인, LG U+는 콘텐츠 경쟁력이 우수하며, KT는 전국 커버리지와 안정성이 강점입니다.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-q-4">Q4. '자동완성 키워드'나 '연관 검색어'로 많이 나오는 'KT 디시', 'KT 싼곳'은 무엇을 의미하나요?</button>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>A. 'KT 디시'는 주로 인터넷 커뮤니티인 '디시인사이드'에서 'KT' 관련 정보를 공유하는 게시판을 의미합니다. 이곳에서는 '내돈내산' 후기나 '사은품' 정보를 활발하게 교환하며, '싼곳'을 찾기 위한 정보도 얻을 수 있습니다. 하지만 온라인 커뮤니티 정보는 신뢰도가 낮을 수 있으므로, 정확한 정보는 공식 '전문 업체'나 공식 홈페이지를 통해 확인하는 것이 안전합니다. '네이버'나 '구글'에서 검색 시 '평균' 가격을 확인하고 '비교'하는 습관이 필요합니다.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-q-5">Q5. 'KT 인터넷 가입 순위'는 어떻게 되나요?</button>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>A. 'KT 인터넷 가입 순위'는 일반적으로 통신사별 점유율을 의미합니다. 'KT'는 유선 통신 시장에서 가장 높은 점유율을 유지하고 있으며, 특히 '기가 인터넷' 분야에서는 압도적인 '순위'를 차지하고 있습니다. 이는 KT가 제공하는 서비스의 '장점'과 '안정성'이 사용자들에게 인정받고 있음을 보여줍니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: User Engagement Form -->
+        <section id="contact">
+            <h2>KT 인터넷 가입 견적 및 상담 신청</h2>
+            <p>고객님께 최적화된 맞춤형 요금제 '견적'과 '사은품' '혜택'을 '전문 업체' 상담원을 통해 확인하세요. 아래 양식을 작성해 주시면 '빠른 상담'을 통해 '합리적인 비용'으로 'KT 인터넷 가입'을 도와드리겠습니다. '얼마'나 절약할 수 있는지 지금 바로 확인해 보세요.</p>
+            <div class="form-container">
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="name">이름:</label>
+                        <input type="text" id="name" name="name" required placeholder="이름을 입력해 주세요">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">연락처:</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="010-0000-0000">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">설치 주소 (시/군/구):</label>
+                        <input type="text" id="location" name="location" required placeholder="예: 서울특별시 강남구">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">희망 서비스:</label>
+                        <select id="serviceType" name="serviceType" required>
+                            <option value="">서비스 유형을 선택해주세요</option>
+                            <option value="internet">인터넷만 단독 가입</option>
+                            <option value="internet-tv">인터넷 + TV 결합</option>
+                            <option value="bundle">인터넷 + TV + 휴대폰 결합</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="memo">문의 내용 (선택):</label>
+                        <textarea id="memo" name="memo" rows="4" placeholder="궁금한 점이나 특별히 원하는 혜택이 있다면 작성해주세요."></textarea>
+                    </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="privacyAgree" name="privacyAgree" required>
+                        <label for="privacyAgree">개인정보 수집 및 이용에 동의합니다.</label>
+                    </div>
+                    <a href="#" class="cta-button">상담 신청 및 견적 확인</a>
+                </form>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('.faq-question').forEach((button) => {
+            button.addEventListener('click', () => {
+                const answer = button.nextElementSibling;
+                const expanded = button.getAttribute('aria-expanded') === 'true';
+                button.setAttribute('aria-expanded', !expanded);
+                button.classList.toggle('active');
+                answer.style.display = expanded ? 'none' : 'block';
+            });
+        });
+    </script>
+  
